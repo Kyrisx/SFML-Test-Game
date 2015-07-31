@@ -4,63 +4,65 @@
 #include "SFML\Graphics.hpp"
 #include "Animation.h"
 #include <vector>
+#include <iostream>
 
-using sf::Texture;
 using sf::Sprite;
 
 using std::vector;
+using std::cout;
 
 using Animation::moveLeft;
+using Animation::moveRight;
+using Animation::moveUp;
+using Animation::moveDown;
 
 class Character
 {
 private:
-	Texture texture;
+	Sprite state;
+
 	unsigned int moveSpeed;
 	unsigned int attackSpeed;
 	unsigned int animationSpeed;
-	unsigned int direction;
+	unsigned int priorMove;
+	unsigned int stepPhase;
+	unsigned int count = animationSpeed;
+	
+	float x;
+	float y;
+	
 	vector <Sprite> left;
 	vector <Sprite> right;
 	vector <Sprite> up;
 	vector <Sprite> down;
 
-	
-
 public:
 	Character();
 	~Character();
+			
+	void setMoveSpeed(unsigned int);
+	void setAttackSpeed(unsigned int);
+	void setAnimationSpeed(unsigned int);
 
-	void setTexture(Texture t);
-		
-	void setMoveSpeed(unsigned int ms);
-	void setAttackSpeed(unsigned int ats);
-	void setAnimationSpeed(unsigned int ans);
-	void setDirection(unsigned int d);
+	void addLeft(vector <Sprite>&);
+	void addRight(vector <Sprite>&);
+	void addUp(vector <Sprite>&);
+	void addDown(vector <Sprite>&);
 
-	unsigned int getMoveSpeed();
-	unsigned int getAttackSpeed();
-	unsigned int getAnimationSpeed();
-	unsigned int getDirection();
-
-	void addLeft(Sprite l);
-	void addRight(Sprite r);
-	void addUp(Sprite u);
-	void addDown(Sprite d);
-	void moveLeft();
-	void moveRight(Character c);
-	void moveUp(Character c);
-	void moveDown(Character c);
-
-
+	void move(unsigned int);
 };
 
 Character::Character()
 {
+	state = right[0];
 	moveSpeed = 0;
 	attackSpeed = 0;
 	animationSpeed = 0;	
-	direction = 0;
+	priorMove = 0;
+	stepPhase = 0;
+	count = animationSpeed;
+	x = 0.0;
+	y = 0.0;
 }
 
 Character::~Character()
@@ -68,26 +70,39 @@ Character::~Character()
 
 }
 
-void Character::setTexture(Texture t) {	texture = t; }
-
 void Character::setMoveSpeed(unsigned int ms) {	moveSpeed = ms; }
 void Character::setAttackSpeed(unsigned int ats) { attackSpeed = ats; }
 void Character::setAnimationSpeed(unsigned int ans) { attackSpeed = ans; }
-void Character::setDirection(unsigned int d) { direction = d; }
 
-unsigned int Character::getMoveSpeed() { return moveSpeed; }
-unsigned int Character::getAttackSpeed() { return attackSpeed; }
-unsigned int Character::getAnimationSpeed() { return animationSpeed; }
-unsigned int Character::getDirection() { return direction; }
+void Character::addLeft(vector <Sprite>& vec) { left = vec; }
+void Character::addRight(vector <Sprite>& vec) { right = vec; }
+void Character::addUp(vector <Sprite>& vec) { up = vec; }
+void Character::addDown(vector <Sprite>& vec) { down = vec; }
 
-void Character::addLeft(Sprite l) { left.push_back(l); }
-void Character::addRight(Sprite r) { right.push_back(r); }
-void Character::addUp(Sprite u) { up.push_back(u); }
-void Character::addDown(Sprite d) { down.push_back(d); }
+void Character::move(unsigned int dir) {
+	if (moveSpeed == 0 || animationSpeed == 0) { cout << "WARNING: Essential Character Speed Variable is 0" << endl; }
 
+	bool madeMove = false;
 
-void Character::moveLeft() {
-	Animation::moveLeft()
+	if (dir == 1) {
+		madeMove = Animation::moveLeft(left, state, priorMove, stepPhase, count, moveSpeed, animationSpeed, x)
+	}
+	else if (dir == 2) {
+		madeMove = Animation::moveRight(right, state, priorMove, stepPhase, count, moveSpeed, animationSpeed, x;
+	}
+	else if (dir == 3) {
+		madeMove = Animation::moveUp(up, state, priorMove, stepPhase, count, moveSpeed, animationSpeed, y);
+	}
+	else {
+		madeMove = Animation::moveDown(down, state, priorMove, stepPhase, count, moveSpeed, animationSpeed, y);
+	}
+
+	if (!madeMove) {
+		step_phase = 0;
+		count = SPEED;
+		// Idle position code [HERE]
+		direction = 0;
+	}
 }
 
 
