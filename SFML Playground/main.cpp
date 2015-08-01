@@ -18,14 +18,13 @@ using sf::Vector2f;
 using sf::Color;
 using sf::Text;
 using sf::Font;
-using std::min;
-using std::max;
 
 
 
-#define SPEED 7			// Animation speed. Higher is slower
-#define STEP 5			// Movement speed. Higher is faster
-#define SWORD_SPEED 3	// Sword swing speed. Higher is slower
+
+//#define SPEED 7			// Animation speed. Higher is slower
+//#define STEP 5			// Movement speed. Higher is faster
+//#define SWORD_SPEED 3	// Sword swing speed. Higher is slower
 
 int main()
 {
@@ -102,7 +101,9 @@ int main()
 	unsigned int swingSpeed = 0;
 	unsigned int swingCount = 0;*/
 
-	load();
+	Character link;
+
+	load(link);
 
 	bool pause = false;
 
@@ -146,8 +147,6 @@ int main()
 			}
 		} // END WHILE - EVENT POLL
 
-		bool madeMove = false;
-
 		if (!pause) {
 		/*	if (!Keyboard::isKeyPressed(Keyboard::Left) && direction == 1) { direction = 0; }
 			if (!Keyboard::isKeyPressed(Keyboard::Right) && direction == 2) { direction = 0; }
@@ -155,23 +154,19 @@ int main()
 			if (!Keyboard::isKeyPressed(Keyboard::Down) && direction == 4) { direction = 0; }*/
 
 			if (Keyboard::isKeyPressed(Keyboard::Left)) {
-				
+				link.move(1);
 			}
 
 			if (Keyboard::isKeyPressed(Keyboard::Right)) {
-				
+				link.move(2);
 			}
 
 			if (Keyboard::isKeyPressed(Keyboard::Up)) {
-				
+				link.move(3);
 			}
 
 			if (Keyboard::isKeyPressed(Keyboard::Down)) {
-				
-			}
-
-			if (!madeMove) {
-				
+				link.move(4);
 			}
 
 			/*if (swingSword) {
@@ -224,20 +219,19 @@ int main()
 						swingSpeed = 0;
 					}
 				}	*/	
-			}
-			state.move(position_x, position_y);
+			//}
 		} // END IF - PAUSED STATE
 
 		
 		window.clear();	
-		window.draw(state);
+		window.draw(link.getState());
 		window.draw(hud1);
 		window.draw(hud2);
 		window.draw(item1);
 		window.draw(item2);
 		window.display();
 
-		if (previousPosition_x != state.getPosition().x || previousPosition_y != state.getPosition().y) {
+		/*if (previousPosition_x != state.getPosition().x || previousPosition_y != state.getPosition().y) {
 			cout << state.getPosition().x << ", " << state.getPosition().y << "\t";
 			if (facing == 1) { cout << "left" << endl; }
 			else if (facing == 2) { cout << "right" << endl; }
@@ -245,7 +239,7 @@ int main()
 			else if (facing == 4) { cout << "down" << endl; }
 			previousPosition_x = state.getPosition().x;
 			previousPosition_y = state.getPosition().y;
-		}
+		}*/
 	} //END WHILE - WINDOW OPEN
 	return 0;
 } // END MAIN

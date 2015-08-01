@@ -15,14 +15,15 @@ private:
 	
 	
 public:
-	bool moveLeft(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, float&);
-	bool moveRight(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, float&);
-	bool moveUp(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, float&);
-	bool moveDown(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, float&);
+	void moveLeft(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, float&, bool&);
+	void moveRight(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, float&, bool&);
+	void moveUp(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, float&, bool&);
+	void moveDown(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, float&, bool&);
 	
+	//void draw(Sprite&);
 };
 
-bool Animation::moveLeft(vector <Sprite> &spriteList, Sprite &state, unsigned int &priorMove, unsigned int &step_phase, unsigned int &count, unsigned int ms, unsigned int ans, float &x) {
+void Animation::moveLeft(vector <Sprite> &spriteList, Sprite &state, unsigned int &priorMove, unsigned int &step_phase, unsigned int &count, unsigned int ms, unsigned int ans, float &x, bool &madeMove) {
 	if (!Keyboard::isKeyPressed(Keyboard::Right)) {
 		if (!Keyboard::isKeyPressed(Keyboard::Up) && !Keyboard::isKeyPressed(Keyboard::Down)) {
 			if (priorMove != 1) {
@@ -39,13 +40,13 @@ bool Animation::moveLeft(vector <Sprite> &spriteList, Sprite &state, unsigned in
 			state = spriteList[step_phase];
 			//facing = 1;
 		}
-		x += -ms;
-		return true;
+		signed int displacement = ms;
+		x += -displacement;
 	}
-	return false;
+	return;
 }
 
-bool Animation::moveRight(vector <Sprite> &spriteList, Sprite &state, unsigned int &priorMove, unsigned int &step_phase, unsigned int &count, unsigned int ms, unsigned int ans, float &x) {
+void Animation::moveRight(vector <Sprite> &spriteList, Sprite &state, unsigned int &priorMove, unsigned int &step_phase, unsigned int &count, unsigned int ms, unsigned int ans, float &x, bool &madeMove) {
 	if (!Keyboard::isKeyPressed(Keyboard::Left)) {
 		if (!Keyboard::isKeyPressed(Keyboard::Up) && !Keyboard::isKeyPressed(Keyboard::Down)) {
 			if (priorMove != 2) {
@@ -62,13 +63,13 @@ bool Animation::moveRight(vector <Sprite> &spriteList, Sprite &state, unsigned i
 			state = spriteList[step_phase];
 			//facing = 2;
 		}
-		x += ms;
-		return true;
+		signed int displacement = ms;
+		x += displacement;
 	}
-	return false;
+	return;
 }
 
-bool Animation::moveUp(vector <Sprite> &spriteList, Sprite &state, unsigned int &priorMove, unsigned int &step_phase, unsigned int &count, unsigned int ms, unsigned int ans, float &y) {
+void Animation::moveUp(vector <Sprite> &spriteList, Sprite &state, unsigned int &priorMove, unsigned int &step_phase, unsigned int &count, unsigned int ms, unsigned int ans, float &y, bool &madeMove) {
 	if (!Keyboard::isKeyPressed(Keyboard::Down)) {
 		if (!Keyboard::isKeyPressed(Keyboard::Left) && !Keyboard::isKeyPressed(Keyboard::Right)) {
 			if (priorMove != 3) {
@@ -85,13 +86,13 @@ bool Animation::moveUp(vector <Sprite> &spriteList, Sprite &state, unsigned int 
 			state = spriteList[step_phase];
 			//facing = 3;
 		}
-		y += -ms;
-		return true;
+		signed int displacement = ms;
+		y += -displacement;
 	}
-	return false;
+	return;
 }
 
-bool Animation::moveDown(vector <Sprite> &spriteList, Sprite &state, unsigned int &priorMove, unsigned int &step_phase, unsigned int &count, unsigned int ms, unsigned int ans, float &x) {
+void Animation::moveDown(vector <Sprite> &spriteList, Sprite &state, unsigned int &priorMove, unsigned int &step_phase, unsigned int &count, unsigned int ms, unsigned int ans, float &y, bool &madeMove) {
 	if (!Keyboard::isKeyPressed(Keyboard::Up)) {
 		if (!Keyboard::isKeyPressed(Keyboard::Left) && !Keyboard::isKeyPressed(Keyboard::Right)) {
 			if (priorMove != 4) {
@@ -108,10 +109,10 @@ bool Animation::moveDown(vector <Sprite> &spriteList, Sprite &state, unsigned in
 			state = spriteList[step_phase];
 			//facing = 4;
 		}
-		y += ms;
-		return true;
+		signed int displacement = ms;
+		y += displacement;
 	}
-	return false;
+	return;
 }
 
 

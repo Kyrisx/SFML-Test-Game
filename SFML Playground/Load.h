@@ -5,12 +5,15 @@
 
 using std::cout;
 using std::endl;
+using std::min;
+using std::max;
 
 using sf::Sprite;
 using sf::Texture;
 using sf::IntRect;
 
 void loadHelper(Sprite&, int, int, int, int);
+void bindMovement(vector <vector<Sprite>> &, Texture &);
 
 /* Character Reference
 
@@ -19,9 +22,8 @@ A	:	Link
 */
 
 // A	Link
-void load() 
+void load(Character &link) 
 {
-	Character link;
 	Texture texture;
 	if (!texture.loadFromFile("spritesheet.png")) {
 		cout << "Couldn't open sprite file" << endl;
@@ -112,11 +114,12 @@ void loadHelper(Sprite &s, int left, int top, int width, int height) {
 }
 
 void bindMovement(vector <vector<Sprite>> &vec, Texture &t) {
-	for (unsigned int i = 0; i < vec.size(); i++) {		
+	for (unsigned int i = 0; i < vec.size(); i++) {
 		for (unsigned int j = 0; j < vec[i].size(); j++) {
 			vec[i][j].setTexture(t);
 			vec[i][j].setOrigin(vec[i][j].getLocalBounds().width, vec[i][j].getLocalBounds().height);
 		}
+	}
 }
 
 #endif
