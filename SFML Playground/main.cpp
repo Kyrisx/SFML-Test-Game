@@ -102,8 +102,9 @@ int main()
 	unsigned int swingCount = 0;*/
 
 	Character link;
+	Load l;
 
-	load(link);
+	l.loadit(link);
 
 	bool pause = false;
 
