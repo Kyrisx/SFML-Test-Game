@@ -89,12 +89,12 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Load.cpp" />
-    <ClCompile Include="Load.h" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Load.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

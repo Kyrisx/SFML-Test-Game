@@ -27,15 +27,15 @@
     <ClCompile Include="Load.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Load.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Load.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

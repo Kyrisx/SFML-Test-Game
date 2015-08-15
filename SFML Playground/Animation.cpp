@@ -19,6 +19,7 @@ void Animation::moveLeft(vector <Sprite> &spriteList, Sprite &state, unsigned in
 		}
 		signed int displacement = ms;
 		x += -displacement;
+		madeMove = true;
 	}
 	return;
 }
@@ -42,6 +43,7 @@ void Animation::moveRight(vector <Sprite> &spriteList, Sprite &state, unsigned i
 		}
 		signed int displacement = ms;
 		x += displacement;
+		madeMove = true;
 	}
 	return;
 }
@@ -65,6 +67,7 @@ void Animation::moveUp(vector <Sprite> &spriteList, Sprite &state, unsigned int 
 		}
 		signed int displacement = ms;
 		y += -displacement;
+		madeMove = true;
 	}
 	return;
 }
@@ -88,6 +91,7 @@ void Animation::moveDown(vector <Sprite> &spriteList, Sprite &state, unsigned in
 		}
 		signed int displacement = ms;
 		y += displacement;
+		madeMove = true;
 	}
 	return;
 }

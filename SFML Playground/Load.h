@@ -7,8 +7,6 @@
 
 using std::vector;
 
-
-
 using std::cout;
 using std::endl;
 using std::min;
@@ -18,14 +16,12 @@ using sf::Sprite;
 using sf::Texture;
 using sf::IntRect;
 
-
-
 class Load
 {
 private:
 
 public:
-	void loadit(Character&);
+	void load(Character&);
 };
 
 #endif

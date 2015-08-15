@@ -19,9 +19,6 @@ using sf::Color;
 using sf::Text;
 using sf::Font;
 
-
-
-
 //#define SPEED 7			// Animation speed. Higher is slower
 //#define STEP 5			// Movement speed. Higher is faster
 //#define SWORD_SPEED 3	// Sword swing speed. Higher is slower
@@ -104,7 +101,7 @@ int main()
 	Character link;
 	Load l;
 
-	l.loadit(link);
+	l.load(link);
 
 	bool pause = false;
 

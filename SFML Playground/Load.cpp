@@ -11,12 +11,11 @@ A	:	Link
 void loadHelper(Sprite&, int, int, int, int);
 void bindMovement(vector <vector<Sprite>>&, Texture&);
 
-void Load::loadit(Character &link)
+void Load::load(Character& link)
 {
 	Texture texture;
-	if (!texture.loadFromFile("spritesheet.png")) {
-		cout << "Couldn't open sprite file" << endl;
-	}
+	link.setTexture(texture, "spritesheet.png");
+	
 	Sprite Awl0, Awl1, Awl2, Awl3, Awl4, Awl5, Awl6;
 	Sprite Awr0, Awr1, Awr2, Awr3, Awr4, Awr5, Awr6;
 	Sprite Awu0, Awu1, Awu2, Awu3, Awu4, Awu5, Awu6, Awu7, Awu8;
@@ -80,19 +79,25 @@ void Load::loadit(Character &link)
 	//loadHelper(Asd4, 500, 387, 121, 126);
 	//loadHelper(Asd5, 630, 391, 139, 117);
 
-	vector <Sprite> Awl{ Awl0, Awl1, Awl2, Awl3, Awl4, Awl5, Awl6 };
-	vector <Sprite> Awr{ Awr0, Awr1, Awr2, Awr3, Awr4, Awr5, Awr6 };
-	vector <Sprite> Awu{ Awu0, Awu1, Awu2, Awu3, Awu4, Awu5, Awu6, Awu7, Awu8 };
-	vector <Sprite> Awd{ Awd0, Awd1, Awd2, Awd3, Awd4, Awd5, Awd6, Awd7, Awd8 };
+	vector <Sprite> Awl = { Awl0, Awl1, Awl2, Awl3, Awl4, Awl5, Awl6 };
+	vector <Sprite> Awr = { Awr0, Awr1, Awr2, Awr3, Awr4, Awr5, Awr6 };
+	vector <Sprite> Awu = { Awu0, Awu1, Awu2, Awu3, Awu4, Awu5, Awu6, Awu7, Awu8 };
+	vector <Sprite> Awd = { Awd0, Awd1, Awd2, Awd3, Awd4, Awd5, Awd6, Awd7, Awd8 };
 
-	vector <vector<Sprite>> movement{ Awl, Awr, Awu, Awd };
+	vector <vector<Sprite>> movement = { Awl, Awr, Awu, Awd };
 
-	bindMovement(movement, texture);
+	bindMovement(movement, link.getTexture());
 
 	link.addLeft(movement[0]);
 	link.addRight(movement[1]);
 	link.addUp(movement[2]);
 	link.addDown(movement[3]);
+
+	link.addLeft(Awl);
+	link.addRight(Awr);
+	link.addUp(Awu);
+	link.addDown(Awd);
+
 
 	link.setMoveSpeed(5);
 	link.setAnimationSpeed(7);
@@ -110,3 +115,22 @@ void bindMovement(vector <vector<Sprite>> &vec, Texture &t) {
 		}
 	}
 }
+
+//void bindMovement(vector <Sprite> &vec1, vector <Sprite> &vec2, vector <Sprite> &vec3, vector <Sprite> &vec4, Texture &t) {
+//	for (unsigned int i = 0; i < vec1.size(); i++) {
+//		vec1[i].setTexture(t);
+//		vec1[i].setOrigin(vec1[i].getLocalBounds().width, vec1[i].getLocalBounds().height);	
+//	}
+//	for (unsigned int i = 0; i < vec2.size(); i++) {
+//		vec2[i].setTexture(t);
+//		vec2[i].setOrigin(vec2[i].getLocalBounds().width, vec2[i].getLocalBounds().height);
+//	}
+//	for (unsigned int i = 0; i < vec3.size(); i++) {
+//		vec3[i].setTexture(t);
+//		vec3[i].setOrigin(vec3[i].getLocalBounds().width, vec3[i].getLocalBounds().height);
+//	}
+//	for (unsigned int i = 0; i < vec4.size(); i++) {
+//		vec4[i].setTexture(t);
+//		vec4[i].setOrigin(vec4[i].getLocalBounds().width, vec4[i].getLocalBounds().height);
+//	}
+//}

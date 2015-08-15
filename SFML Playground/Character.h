@@ -6,6 +6,7 @@
 #include <iostream>
 
 using sf::Sprite;
+using sf::Texture;
 
 using std::vector;
 using std::cout;
@@ -14,6 +15,8 @@ using std::endl;
 class Character
 {
 private:
+	Texture texture;
+
 	Sprite state;
 
 	unsigned int moveSpeed;
@@ -23,6 +26,8 @@ private:
 	unsigned int stepPhase;
 	unsigned int count;
 	
+	float prior_x;
+	float prior_y;
 	float x;
 	float y;
 	
@@ -34,12 +39,15 @@ private:
 public:
 	Character();
 	~Character();
+
+	bool setTexture(Texture&, char*);
+	Texture getTexture();
+	
+	Sprite getState();
 			
 	void setMoveSpeed(unsigned int);
 	void setAttackSpeed(unsigned int);
 	void setAnimationSpeed(unsigned int);
-
-	Sprite getState();
 
 	void addLeft(vector <Sprite>&);
 	void addRight(vector <Sprite>&);
