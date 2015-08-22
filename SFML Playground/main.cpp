@@ -19,10 +19,6 @@ using sf::Color;
 using sf::Text;
 using sf::Font;
 
-//#define SPEED 7			// Animation speed. Higher is slower
-//#define STEP 5			// Movement speed. Higher is faster
-//#define SWORD_SPEED 3	// Sword swing speed. Higher is slower
-
 int main()
 {
 	RenderWindow window(VideoMode(1280, 720), "Link Testing Grounds");
@@ -33,7 +29,7 @@ int main()
 	hud1.setOutlineThickness(10);	
 	hud1.setOutlineColor(Color::Blue);	
 	hud1.setOrigin(hud1.getLocalBounds().width, 0);
-	hud1.setPosition(window.getSize().x / 2, 0);
+	hud1.setPosition(window.getSize().x / 2.0f, 0);
 
 
 	RectangleShape hud2(Vector2f(90, 75));
@@ -41,7 +37,7 @@ int main()
 	hud2.setOutlineThickness(10);
 	hud2.setOutlineColor(Color::Blue);
 	hud2.setOrigin(0, 0);
-	hud2.setPosition(window.getSize().x / 2, 0);
+	hud2.setPosition(window.getSize().x / 2.0f, 0);
 
 	Text item1;
 	Font font;
@@ -53,14 +49,14 @@ int main()
 	item1.setString("A");
 	item1.setCharacterSize(32);
 	item1.setColor(Color::Blue);
-	item1.setPosition((window.getSize().x / 2) - 105, 0);
+	item1.setPosition((window.getSize().x / 2.0f) - 105, 0);
 
 	Text item2;
 	item2.setFont(font);
 	item2.setString("B");
 	item2.setCharacterSize(32);
 	item2.setColor(Color::Blue);
-	item2.setPosition((window.getSize().x / 2) + 10, 0);
+	item2.setPosition((window.getSize().x / 2.0f) + 10, 0);
 	
 	// Animations
 
@@ -123,11 +119,11 @@ int main()
 					isEvent = true;
 					window.close();
 				}
-				/*if (event.key.code == Keyboard::S) {
+				if (event.key.code == Keyboard::S) {
 					isEvent = true;
 					window.setKeyRepeatEnabled(false);	
-					swingSword = true;				
-				}*/
+					link.attack();
+				}
 				break;
 
 			case Event::LostFocus:
@@ -151,21 +147,8 @@ int main()
 			if (!Keyboard::isKeyPressed(Keyboard::Up) && direction == 3) { direction = 0; }
 			if (!Keyboard::isKeyPressed(Keyboard::Down) && direction == 4) { direction = 0; }*/
 
-			if (Keyboard::isKeyPressed(Keyboard::Left)) {
-				link.move(1);
-			}
-
-			if (Keyboard::isKeyPressed(Keyboard::Right)) {
-				link.move(2);
-			}
-
-			if (Keyboard::isKeyPressed(Keyboard::Up)) {
-				link.move(3);
-			}
-
-			if (Keyboard::isKeyPressed(Keyboard::Down)) {
-				link.move(4);
-			}
+			link.move();
+			link.attack();
 
 			/*if (swingSword) {
 				swingSpeed++;
@@ -223,6 +206,7 @@ int main()
 		
 		window.clear();	
 		window.draw(link.getState());
+
 		window.draw(hud1);
 		window.draw(hud2);
 		window.draw(item1);
@@ -241,8 +225,4 @@ int main()
 	} //END WHILE - WINDOW OPEN
 	return 0;
 } // END MAIN
-
-//void swordSwing(int facing, Sprite sl[]) {
-//
-//}
 	

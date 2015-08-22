@@ -7,6 +7,7 @@ using sf::Sprite;
 using sf::Keyboard;
 
 using std::vector;
+using std::pair;
 
 class Animation
 {
@@ -15,12 +16,11 @@ private:
 	
 	
 public:
-	void moveLeft(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, float&, bool&);
-	void moveRight(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, float&, bool&);
-	void moveUp(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, float&, bool&);
-	void moveDown(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, float&, bool&);
-	
-	//void draw(Sprite&);
+	void moveLeft(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, pair <float, float>&);
+	void moveRight(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, pair <float, float>&);
+	void moveUp(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, pair <float, float>&);
+	void moveDown(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, pair <float, float>&);
+	void noMove(vector <Sprite>&, Sprite&);
 };
 
 #endif

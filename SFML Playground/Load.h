@@ -15,6 +15,8 @@ using std::max;
 using sf::Sprite;
 using sf::Texture;
 using sf::IntRect;
+using sf::RenderWindow;
+
 
 class Load
 {
