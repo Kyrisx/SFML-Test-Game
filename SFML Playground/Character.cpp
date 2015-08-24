@@ -111,6 +111,6 @@ void Character::attack() {
 	Animation anim;
 
 	if (facing == 1) {
-
+		anim.attack(atkleft, state, getAttack);
 	}
 }

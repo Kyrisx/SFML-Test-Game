@@ -108,4 +108,32 @@ void Animation::noMove(vector <Sprite> &spriteList, Sprite &state) {
 	state = spriteList[0];
 }
 
-void Animation::
+void Animation::attack(vector <Sprite> &spriteList, Sprite &state, Character::attackQuery &aq) {
+	aq.attackCount++;
+	
+	if (aq.attackPhase == 5 || aq.attackCount == 6) {
+		//swingSword = false;
+		aq.attackCount = 0;
+	}
+	state = spriteList[swingCount];
+	if (swingSpeed == SWORD_SPEED) {
+		cout << "Left swing count: " << swingCount << endl;
+		swingCount++;
+		swingSpeed = 0;
+	}
+
+	/*swingSpeed++;
+	if (facing == 1) {
+		if (swingCount == 5 || swingCount == 6) {
+			swingSword = false;
+			swingCount = 0;
+		}
+		state = sl[swingCount];
+		if (swingSpeed == SWORD_SPEED) {
+			cout << "Left swing count: " << swingCount << endl;
+			swingCount++;
+			swingSpeed = 0;
+		}
+	}*/
+	
+}

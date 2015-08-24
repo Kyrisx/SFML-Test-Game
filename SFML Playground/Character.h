@@ -45,11 +45,7 @@ private:
 	vector <Sprite> atkup;
 	vector <Sprite> atkdown;
 
-	struct attackQuery {		
-		unsigned int attackSpeed;
-		unsigned int attackCount;
-		unsigned int attackPhase;
-	};
+	
 
 public:
 	Character();
@@ -64,7 +60,13 @@ public:
 	void setAS(unsigned int);
 	void setAns(unsigned int);
 
-	attackQuery getAttack();
+	struct attackQuery {		
+		unsigned int attackSpeed;
+		unsigned int attackCount;
+		unsigned int attackPhase;
+	};
+
+	attackQuery getAttack;
 
 	void addLeft(vector <Sprite>&);
 	void addRight(vector <Sprite>&);

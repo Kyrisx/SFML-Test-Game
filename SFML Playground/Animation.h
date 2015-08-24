@@ -21,6 +21,7 @@ public:
 	void moveUp(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, pair <float, float>&);
 	void moveDown(vector <Sprite>&, Sprite&, unsigned int&, unsigned int&, unsigned int&, unsigned int, unsigned int, pair <float, float>&);
 	void noMove(vector <Sprite>&, Sprite&);
+	void attack(vector <Sprite>&, Sprite&, Character::attackQuery&);
 };
 
 #endif
