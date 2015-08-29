@@ -6,7 +6,6 @@
 #include <SFML/Graphics.hpp>
 
 using std::vector;
-
 using std::cout;
 using std::endl;
 using std::min;
@@ -16,7 +15,6 @@ using sf::Sprite;
 using sf::Texture;
 using sf::IntRect;
 using sf::RenderWindow;
-
 
 class Load
 {

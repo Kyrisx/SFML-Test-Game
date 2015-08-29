@@ -2,7 +2,6 @@
 #define CHARACTER_H
 
 #include "SFML\Graphics.hpp"
-#include "Animation.h"
 #include <iostream>
 #include <memory>
 
@@ -27,10 +26,6 @@ private:
 	unsigned int stepPhase;
 	unsigned int count;
 	unsigned int facing;
-
-	unsigned int attackSpeed;
-	unsigned int attackCount;
-	unsigned int attackPhase;
 	
 	pair <float, float> loc;
 	float prior_x;
@@ -40,12 +35,10 @@ private:
 	vector <Sprite> right;
 	vector <Sprite> up;
 	vector <Sprite> down;
-	vector <Sprite> atkleft;
-	vector <Sprite> atkright;
-	vector <Sprite> atkup;
-	vector <Sprite> atkdown;
-
-	
+	vector <Sprite> atkLeft;
+	vector <Sprite> atkRight;
+	vector <Sprite> atkUp;
+	vector <Sprite> atkDown;
 
 public:
 	Character();
@@ -56,17 +49,8 @@ public:
 
 	Sprite getState();
 			
-	void setMS(unsigned int);
-	void setAS(unsigned int);
+	void setMS(unsigned int ms);
 	void setAns(unsigned int);
-
-	struct attackQuery {		
-		unsigned int attackSpeed;
-		unsigned int attackCount;
-		unsigned int attackPhase;
-	};
-
-	attackQuery getAttack;
 
 	void addLeft(vector <Sprite>&);
 	void addRight(vector <Sprite>&);
@@ -79,7 +63,24 @@ public:
 	void addAtkDown(vector <Sprite>&);
 
 	void move();
-	void attack();
+	bool attack();
+
+	struct attackQuery {
+		unsigned int attackSpeed;
+		unsigned int attackCount;
+		unsigned int attackPhase;
+	};
+
+	attackQuery getAttack;
+
+	// STATISTICS INFO //////
+	char* getPriorMove();
+	char* getFacing();
+	unsigned int getStepPhase();
+	float x();
+	float y();
+	unsigned int getAtkDirSize();
+	/////////////////////////
 	
 };
 

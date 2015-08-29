@@ -24,6 +24,7 @@ void Animation::moveLeft(vector <Sprite> &spriteList, Sprite &state, unsigned in
 		state = spriteList[step_phase];			
 		loc.first -= ms;
 	}
+	return;
 }
 
 void Animation::moveRight(vector <Sprite> &spriteList, Sprite &state, unsigned int &priorMove, unsigned int &step_phase, unsigned int &count, unsigned int ms, unsigned int ans, pair <float, float>& loc) {
@@ -50,6 +51,7 @@ void Animation::moveRight(vector <Sprite> &spriteList, Sprite &state, unsigned i
 		state = spriteList[step_phase];
 		loc.first += ms;
 	}
+	return;
 }
 
 void Animation::moveUp(vector <Sprite> &spriteList, Sprite &state, unsigned int &priorMove, unsigned int &step_phase, unsigned int &count, unsigned int ms, unsigned int ans, pair <float, float>& loc) {
@@ -76,6 +78,7 @@ void Animation::moveUp(vector <Sprite> &spriteList, Sprite &state, unsigned int 
 		state = spriteList[step_phase];
 		loc.second -= ms;
 	}
+	return;
 }
 
 void Animation::moveDown(vector <Sprite> &spriteList, Sprite &state, unsigned int &priorMove, unsigned int &step_phase, unsigned int &count, unsigned int ms, unsigned int ans, pair <float, float>& loc) {
@@ -102,38 +105,27 @@ void Animation::moveDown(vector <Sprite> &spriteList, Sprite &state, unsigned in
 		state = spriteList[step_phase];
 		loc.second += ms;
 	}
+	return;
 }
 
 void Animation::noMove(vector <Sprite> &spriteList, Sprite &state) {
 	state = spriteList[0];
+	return;
 }
 
-void Animation::attack(vector <Sprite> &spriteList, Sprite &state, Character::attackQuery &aq) {
+bool Animation::attack(vector <Sprite> &spriteList, Sprite &state, Character::attackQuery &aq) {
 	aq.attackCount++;
 	
-	if (aq.attackPhase == 5 || aq.attackCount == 6) {
-		//swingSword = false;
-		aq.attackCount = 0;
-	}
-	state = spriteList[swingCount];
-	if (swingSpeed == SWORD_SPEED) {
-		cout << "Left swing count: " << swingCount << endl;
-		swingCount++;
-		swingSpeed = 0;
+	if (aq.attackPhase == spriteList.size()) {
+		aq.attackPhase = 0;
+		return false;
 	}
 
-	/*swingSpeed++;
-	if (facing == 1) {
-		if (swingCount == 5 || swingCount == 6) {
-			swingSword = false;
-			swingCount = 0;
-		}
-		state = sl[swingCount];
-		if (swingSpeed == SWORD_SPEED) {
-			cout << "Left swing count: " << swingCount << endl;
-			swingCount++;
-			swingSpeed = 0;
-		}
-	}*/
-	
+	state = spriteList[aq.attackPhase];
+
+	if (aq.attackCount == aq.attackSpeed) {
+		aq.attackPhase++;
+		aq.attackCount = 0;
+	}
+	return true;	
 }
