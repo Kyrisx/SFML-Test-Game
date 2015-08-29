@@ -27,7 +27,11 @@ Character::~Character() {}
 void Character::addTexture(Texture* t) { texture = std::unique_ptr<Texture>(t); }
 Texture* Character::printTexture() { return texture.get(); }
 
-Sprite Character::getState() { return state; }
+Sprite* Character::getState() { 
+	Sprite *temp;
+	temp = &state;
+	return temp;
+}
 
 void Character::setMS(unsigned int ms) { moveSpeed = ms; }
 void Character::setAns(unsigned int ans) { animationSpeed = ans; }

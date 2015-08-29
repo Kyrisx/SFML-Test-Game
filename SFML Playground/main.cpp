@@ -124,7 +124,7 @@ int main()
 			}
 			
 			
-			dBuffer.push_back(&link.getState());
+			dBuffer.push_back();
 
 			display(window, sBuffer, dBuffer);	
 		} // END IF - PAUSED STATE	

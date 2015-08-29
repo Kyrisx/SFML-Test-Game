@@ -47,7 +47,7 @@ public:
 	void addTexture(Texture*);
 	Texture* printTexture();
 
-	Sprite getState();
+	Sprite* getState();
 			
 	void setMS(unsigned int ms);
 	void setAns(unsigned int);
