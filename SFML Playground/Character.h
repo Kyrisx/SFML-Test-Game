@@ -49,8 +49,14 @@ public:
 
 	Sprite* getState();
 			
-	void setMS(unsigned int ms);
+	void setMS(unsigned int);
 	void setAns(unsigned int);
+	void setAtk(unsigned int);
+
+	unsigned int getMS();
+	unsigned int getAns();
+
+	float getPlane();
 
 	void addLeft(vector <Sprite>&);
 	void addRight(vector <Sprite>&);

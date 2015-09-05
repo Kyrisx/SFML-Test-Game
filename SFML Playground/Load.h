@@ -10,6 +10,7 @@ using std::cout;
 using std::endl;
 using std::min;
 using std::max;
+using std::abs;
 
 using sf::Sprite;
 using sf::Texture;

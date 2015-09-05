@@ -40,14 +40,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="link1.png">
+    <None Include="link.xcf">
       <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="link2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="link3.png">
-      <Filter>Resource Files</Filter>
-    </Image>
+    </None>
   </ItemGroup>
 </Project>

@@ -15,7 +15,7 @@ void Animation::moveLeft(vector <Sprite> &spriteList, Sprite &state, unsigned in
 		}
 		if (count == ans) {
 			step_phase++;
-			if (step_phase == spriteList.size()) { step_phase = 1; }
+			if (step_phase == spriteList.size()) { step_phase = 0; }
 			count = 0;
 		}
 		else { 
@@ -42,7 +42,7 @@ void Animation::moveRight(vector <Sprite> &spriteList, Sprite &state, unsigned i
 		}
 		if (count == ans) {
 			step_phase++;
-			if (step_phase == spriteList.size()) { step_phase = 1; }
+			if (step_phase == spriteList.size()) { step_phase = 0; }
 			count = 0;
 		}
 		else { 
@@ -69,7 +69,7 @@ void Animation::moveUp(vector <Sprite> &spriteList, Sprite &state, unsigned int 
 		}
 		if (count == ans) {
 			step_phase++;
-			if (step_phase == spriteList.size()) { step_phase = 1; }
+			if (step_phase == spriteList.size()) { step_phase = 0; }
 			count = 0;
 		}
 		else { 
@@ -96,7 +96,7 @@ void Animation::moveDown(vector <Sprite> &spriteList, Sprite &state, unsigned in
 		}
 		if (count == ans) {
 			step_phase++;
-			if (step_phase == spriteList.size()) { step_phase = 1; }
+			if (step_phase == spriteList.size()) { step_phase = 0; }
 			count = 0;
 		}
 		else { 

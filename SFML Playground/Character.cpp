@@ -28,13 +28,18 @@ void Character::addTexture(Texture* t) { texture = std::unique_ptr<Texture>(t); 
 Texture* Character::printTexture() { return texture.get(); }
 
 Sprite* Character::getState() { 
-	Sprite *temp;
-	temp = &state;
-	return temp;
-}
+	return &state; }
 
 void Character::setMS(unsigned int ms) { moveSpeed = ms; }
 void Character::setAns(unsigned int ans) { animationSpeed = ans; }
+void Character::setAtk(unsigned int atk) { getAttack.attackSpeed = atk; }
+
+float Character::getPlane() {
+	return getState()->getGlobalBounds().height;
+}
+
+unsigned int Character::getMS() { return moveSpeed; }
+unsigned int Character::getAns() { return animationSpeed; }
 
 char* Character::getPriorMove() { 
 	if (priorMove == 0) return "-";
@@ -78,8 +83,6 @@ void Character::addAtkDown(vector <Sprite>& vec) { atkDown = vec; }
 void Character::move() {
 	Animation anim;
 
-	if (moveSpeed == 0 || animationSpeed == 0) { cout << "WARNING: Essential Character Speed Variable is 0" << endl; }
-
 	if (Keyboard::isKeyPressed(Keyboard::Left) && (priorMove == 0 || priorMove == 1)) {
 		anim.moveLeft(left, state, priorMove, stepPhase, count, moveSpeed, animationSpeed, loc);
 		facing = 1;
@@ -114,7 +117,6 @@ void Character::move() {
 		else if (facing == 4) {
 			anim.noMove(down, state);
 		}
-		//cout << "No Move" << endl;
 		priorMove = 0;
 	}
 	state.setPosition(loc.first, loc.second);
