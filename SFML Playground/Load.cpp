@@ -30,25 +30,16 @@ void Load::load(Character& link)
 	Sprite Asu0, Asu1, Asu2, Asu3, Asu4, Asu5, Asu6;
 	Sprite Asd0, Asd1, Asd2, Asd3, Asd4, Asd5, Asd6;
 
-	/*loadHelper(Awl0, 4, 70, 19, 23);
+	loadHelper(Awl0, 4, 70, 19, 23);
 	loadHelper(Awl1, 7, 216, 19, 23);
 	loadHelper(Awl2, 38, 217, 23, 22);
 	loadHelper(Awl3, 70, 217, 24, 22);
 	loadHelper(Awl4, 4, 70, 19, 23);
 	loadHelper(Awl5, 104, 216, 19, 23);
 	loadHelper(Awl6, 133, 217, 23, 22);
-	loadHelper(Awl7, 171, 217, 24, 22);*/
-
-	loadHelper(Awl0, 3, 70, 24, 23);
-	loadHelper(Awl1, 7, 216, 24, 23);
-	loadHelper(Awl2, 38, 217, 24, 22);
-	loadHelper(Awl3, 70, 217, 24, 22);
-	loadHelper(Awl4, 3, 70, 24, 23);
-	loadHelper(Awl5, 104, 216, 24, 23);
-	loadHelper(Awl6, 133, 217, 24, 22);
 	loadHelper(Awl7, 171, 217, 24, 22);
 	
-	loadHelper(Awu0, 3, 23, 18, 23);
+	loadHelper(Awu0, 4, 23, 18, 23);
 	loadHelper(Awu1, 9, 187, 18, 24);
 	loadHelper(Awu2, 40, 184, 18, 27);
 	loadHelper(Awu3, 73, 186, 18, 25);
@@ -57,7 +48,7 @@ void Load::load(Character& link)
 	loadHelper(Awu6, 137, 184, 18, 27);
 	loadHelper(Awu7, 173, 186, 18, 25);
 	
-	loadHelper(Awd0, 4, 116, 18, 26);
+	loadHelper(Awd0, 5, 116, 18, 26);
 	loadHelper(Awd1, 7, 245, 18, 29);
 	loadHelper(Awd2, 38, 243, 18, 28);
 	loadHelper(Awd3, 68, 246, 18, 25);

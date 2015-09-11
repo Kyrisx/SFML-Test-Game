@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Character.h"
 #include "Load.h"
+#include "Sword.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -92,6 +93,7 @@ int main()
 	Character link;
 	Load l;
 	l.load(link);
+
 
 	bool isEvent = false;
 	bool pause = false;
