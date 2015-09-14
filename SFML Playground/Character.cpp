@@ -16,10 +16,6 @@ Character::Character()
 	loc.second = 100.00;
 	prior_x = loc.first;
 	prior_y = loc.second;
-
-	getAttack.attackCount = 0;
-	getAttack.attackPhase = 0;
-	getAttack.attackSpeed = 0;
 }
 
 Character::~Character() {}
@@ -32,7 +28,6 @@ Sprite* Character::getState() {
 
 void Character::setMS(unsigned int ms) { moveSpeed = ms; }
 void Character::setAns(unsigned int ans) { animationSpeed = ans; }
-void Character::setAtk(unsigned int atk) { getAttack.attackSpeed = atk; }
 
 float Character::getPlane() {
 	return getState()->getGlobalBounds().height;
@@ -74,11 +69,6 @@ void Character::addRight(vector <Sprite>& vec) {
 }
 void Character::addUp(vector <Sprite>& vec) { up = vec; }
 void Character::addDown(vector <Sprite>& vec) { down = vec; }
-
-void Character::addAtkLeft(vector <Sprite>& vec) { atkLeft = vec; }
-void Character::addAtkRight(vector <Sprite>& vec) { atkRight = vec;}
-void Character::addAtkUp(vector <Sprite>& vec) { atkUp = vec; }
-void Character::addAtkDown(vector <Sprite>& vec) { atkDown = vec; }
 
 void Character::move() {
 	Animation anim;

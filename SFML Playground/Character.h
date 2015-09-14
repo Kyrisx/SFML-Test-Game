@@ -20,6 +20,8 @@ private:
 
 	Sprite state;
 
+	unsigned int weapon1, weapon2;
+
 	unsigned int moveSpeed;	
 	unsigned int animationSpeed;
 	unsigned int priorMove;
@@ -35,10 +37,6 @@ private:
 	vector <Sprite> right;
 	vector <Sprite> up;
 	vector <Sprite> down;
-	vector <Sprite> atkLeft;
-	vector <Sprite> atkRight;
-	vector <Sprite> atkUp;
-	vector <Sprite> atkDown;
 
 public:
 	Character();
@@ -48,11 +46,14 @@ public:
 	Texture* printTexture();
 
 	Sprite* getState();
+
+	void setW1();
+	void setW2();
+	unsigned int getW1;
+	unsigned int getW2;
 			
 	void setMS(unsigned int);
 	void setAns(unsigned int);
-	void setAtk(unsigned int);
-
 	unsigned int getMS();
 	unsigned int getAns();
 
@@ -63,21 +64,8 @@ public:
 	void addUp(vector <Sprite>&);
 	void addDown(vector <Sprite>&);
 
-	void addAtkLeft(vector <Sprite>&);
-	void addAtkRight(vector <Sprite>&);
-	void addAtkUp(vector <Sprite>&);
-	void addAtkDown(vector <Sprite>&);
-
 	void move();
 	bool attack();
-
-	struct attackQuery {
-		unsigned int attackSpeed;
-		unsigned int attackCount;
-		unsigned int attackPhase;
-	};
-
-	attackQuery getAttack;
 
 	// STATISTICS INFO //////
 	char* getPriorMove();

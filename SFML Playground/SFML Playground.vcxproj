@@ -94,8 +94,8 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Character.h" />
-    <ClInclude Include="Load.h" />
     <ClInclude Include="Sword.h" />
+    <ClInclude Include="Load.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
