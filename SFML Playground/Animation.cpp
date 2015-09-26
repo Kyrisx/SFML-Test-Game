@@ -113,19 +113,19 @@ void Animation::noMove(vector <Sprite> &spriteList, Sprite &state) {
 	return;
 }
 
-bool Animation::attack(vector <Sprite> &spriteList, Sprite &state, Character::attackQuery &aq) {
-	aq.attackCount++;
-	
-	if (aq.attackPhase == spriteList.size()) {
-		aq.attackPhase = 0;
-		return false;
-	}
-
-	state = spriteList[aq.attackPhase];
-
-	if (aq.attackCount == aq.attackSpeed) {
-		aq.attackPhase++;
-		aq.attackCount = 0;
-	}
-	return true;	
-}
+//bool Animation::attack(vector <Sprite> &spriteList, Sprite &state, Character::attackQuery &aq) {
+//	aq.attackCount++;
+//	
+//	if (aq.attackPhase == spriteList.size()) {
+//		aq.attackPhase = 0;
+//		return false;
+//	}
+//
+//	state = spriteList[aq.attackPhase];
+//
+//	if (aq.attackCount == aq.attackSpeed) {
+//		aq.attackPhase++;
+//		aq.attackCount = 0;
+//	}
+//	return true;	
+//}
