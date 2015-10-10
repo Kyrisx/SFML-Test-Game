@@ -24,8 +24,6 @@ protected:
 	unsigned int count;
 	unsigned int facing;
 
-
-	
 	pair <float, float> loc;
 	float prior_x;
 	float prior_y;
@@ -48,11 +46,6 @@ public:
 
 	float getPlane();
 
-	void addLeft(vector <Sprite>&);
-	void addRight(vector <Sprite>&);
-	void addUp(vector <Sprite>&);
-	void addDown(vector <Sprite>&);
-
 	virtual void move() = 0;
 	virtual bool attack() = 0;
 
@@ -62,7 +55,6 @@ public:
 	unsigned int getStepPhase();
 	float x();
 	float y();
-	unsigned int getAtkDirSize();
 	/////////////////////////
 	
 };

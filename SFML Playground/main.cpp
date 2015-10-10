@@ -11,13 +11,10 @@ using std::endl;
 using std::vector;
 using std::string;
 
-using sf::Sprite;
-using sf::Texture;
 using sf::Drawable;
 using sf::Event;
 using sf::Transform;
 using sf::Keyboard;
-using sf::IntRect;
 using sf::RenderWindow;
 using sf::VideoMode;
 using sf::RectangleShape;
@@ -27,7 +24,7 @@ using sf::Text;
 using sf::Font;
 
 void display(RenderWindow&, vector <Drawable*>&, vector <Drawable*>&);
-void stats(Character&, bool, bool);
+void stats(Player&, bool, bool);
 
 int main()
 {
@@ -91,6 +88,7 @@ int main()
 
 	Player link;
 	Sword sword;
+	link.equip(&sword, 1);
 
 	bool isEvent = false;
 	bool pause = false;
@@ -134,13 +132,13 @@ int main()
 						link.setAns(alt);
 						cout << "Link animation speed changed to " << alt << "." << endl;
 					}
-				/*	else if (sel == "atk") {
-						cout << "Current: " << link.getAttack.attackSpeed << endl;
+					else if (sel == "atk") {
+						cout << "Current: " << sword.speed << endl;
 						cout << "> ";
 						cin >> alt;
-						link.setAtk(alt);
+						sword.speed = alt;
 						cout << "Link attack speed changed to " << alt << "." << endl;
-					}*/
+					}
 					else {
 						cout << "Invalid parameter" << endl;
 					}
@@ -185,7 +183,6 @@ int main()
 			dBuffer.push_back(hud4);
 			
 			dBuffer.push_back(link.getState());
-			cout << link.getPlane() << endl;
 			
 			Text *item1 = new Text;
 			Font font;
@@ -212,7 +209,7 @@ int main()
 
 		} // END IF - PAUSED STATE	
 
-		//stats(link, pause, isEvent);
+		stats(link, pause, isEvent);
 	} //END WHILE - WINDOW OPEN
 
 	return 0;
@@ -235,34 +232,34 @@ void display(RenderWindow &window, vector <Drawable*> &sbuffer, vector <Drawable
 	return;
 }
 
-//void stats(Character& c, bool a, bool b) {
-//	system("CLS");
-//	cout << "Game State: ";
-//	if (a) {
-//		cout << "Paused" << endl;
-//	}
-//	else cout << "Running" << endl;
-//	cout << "Location: " << c.x() << ", " << c.y() << endl;
-//	cout << "Heading: " << c.getPriorMove() << endl;
-//	cout << "Facing: " << c.getFacing() << endl;
-//	cout << "Action: ";
-//	if (c.getPriorMove() == "-")	{
-//		if (b) {
-//			cout << "Attacking" << "\t" << "Progress [";
-//			unsigned int count = 0;
-//			while (count < c.getAttack.attackPhase * 3) {
-//				cout << "===";
-//				count += 3;
-//			}
-//			for (unsigned int i = 0; i < c.getAtkDirSize() * 3 - count; i++) {
-//				cout << " ";
-//			}
-//			cout << "]" << endl;
-//		}
-//		else { cout << "Standing" << endl; }
-//	}
-//	else  {
-//		cout << "Walking" << endl;
-//	}
-//	return;
-//}
+void stats(Player& c, bool a, bool b) {
+	system("CLS");
+	cout << "Game State: ";
+	if (a) {
+		cout << "Paused" << endl;
+	}
+	else cout << "Running" << endl;
+	cout << "Location: " << c.x() << ", " << c.y() << endl;
+	cout << "Heading: " << c.getPriorMove() << endl;
+	cout << "Facing: " << c.getFacing() << endl;
+	cout << "Action: ";
+	if (c.getPriorMove() == "-")	{
+		if (b) {
+			cout << "Attacking" << "\t" << "Progress [";
+			unsigned int count = 0;
+			while (count < c.slot1->phase * 3) {
+				cout << "===";
+				count += 3;
+			}
+			for (unsigned int i = 0; i < c.getAtkDirSize() * 3 - count; i++) {
+				cout << " ";
+			}
+			cout << "]" << endl;
+		}
+		else { cout << "Standing" << endl; }
+	}
+	else  {
+		cout << "Walking" << endl;
+	}
+	return;
+}

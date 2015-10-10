@@ -15,13 +15,20 @@ class Player : public Character
 {
 private:
 	void bind();
+	void endAction();
 
 public:
+	Item *slot0;
+	Item *slot1;
+
 	Player();
-	Item *rh;
-	Item *lh;
+	void equip(Item*, unsigned int);
 	void move();
 	bool attack();
+
+	// STATISTICS INFO //////
+	unsigned int getAtkDirSize();
+	/////////////////////////
 };
 
 Player::Player()
@@ -65,7 +72,7 @@ Player::Player()
 	awu1.setTextureRect(IntRect(9, 187, 18, 24));
 	awu2.setTextureRect(IntRect(40, 184, 18, 27));
 	awu3.setTextureRect(IntRect(73, 186, 18, 25));
-	awu4.setTextureRect(IntRect(3, 23, 18, 23));
+	awu4.setTextureRect(IntRect(4, 23, 18, 23));
 	awu5.setTextureRect(IntRect(105, 187, 18, 24));
 	awu6.setTextureRect(IntRect(137, 184, 18, 27));
 	awu7.setTextureRect(IntRect(173, 186, 18, 25));
@@ -74,7 +81,7 @@ Player::Player()
 	awd1.setTextureRect(IntRect(7, 245, 18, 29));
 	awd2.setTextureRect(IntRect(38, 243, 18, 28));
 	awd3.setTextureRect(IntRect(68, 246, 18, 25));
-	awd4.setTextureRect(IntRect(4, 116, 18, 26));
+	awd4.setTextureRect(IntRect(5, 116, 18, 26));
 	awd5.setTextureRect(IntRect(102, 246, 18, 29));
 	awd6.setTextureRect(IntRect(134, 245, 18, 28));
 	awd7.setTextureRect(IntRect(171, 248, 18, 25));
@@ -92,35 +99,19 @@ Player::Player()
 	bind();
 }
 
-void Player::bind() {
-	for (unsigned int i = 0; i < left.size(); i++) {
-		left[i].setTexture(*texture);
-		if (i == 1 || i == 5) left[i].setOrigin(left[i].getLocalBounds().width / 2, (left[i].getLocalBounds().height / 2) + 3.0f);
-		else if (i == 2 || i == 6) left[i].setOrigin(left[i].getLocalBounds().width / 2, (left[i].getLocalBounds().height / 2) + 2.0f);
-		else left[i].setOrigin(left[i].getLocalBounds().width / 2, left[i].getLocalBounds().height / 2);
-		left[i].scale(3, 3);
+unsigned int Player::getAtkDirSize() {
+	if (facing == 1) return slot1->left.size();
+	else if (facing == 2) return slot1->right.size();
+	else if (facing == 3) return slot1->up.size();
+	else return slot1->down.size();
+}
+
+void Player::equip(Item* item, unsigned int slot) {
+	if (slot == 0) {
+		slot0 = item;
 	}
-	for (unsigned int i = 0; i < right.size(); i++) {
-		right[i].setTexture(*texture);
-		if (i == 1 || i == 5) right[i].setOrigin(right[i].getLocalBounds().width / 2, (right[i].getLocalBounds().height / 2) + 3.0f);
-		else if (i == 2 || i == 6) right[i].setOrigin(right[i].getLocalBounds().width / 2, (right[i].getLocalBounds().height / 2) + 2.0f);
-		else right[i].setOrigin(right[i].getLocalBounds().width / 2, right[i].getLocalBounds().height / 2);
-		right[i].scale(3, 3);
-	}
-	for (unsigned int i = 0; i < up.size(); i++) {
-		up[i].setTexture(*texture);
-		if (i == 1 || i == 5) up[i].setOrigin(up[i].getLocalBounds().width / 2, (up[i].getLocalBounds().height / 2) + 2.0f);
-		else if (i == 3 || i == 7) up[i].setOrigin(up[i].getLocalBounds().width / 2, (up[i].getLocalBounds().height / 2) - 1.0f);
-		else up[i].setOrigin(up[i].getLocalBounds().width / 2, up[i].getLocalBounds().height / 2);
-		up[i].scale(3, 3);
-	}
-	for (unsigned int i = 0; i < down.size(); i++) {
-		down[i].setTexture(*texture);
-		if (i == 1 || i == 5) down[i].setOrigin(down[i].getLocalBounds().width / 2, (down[i].getLocalBounds().height / 2) + 3.0f);
-		else if (i == 2 || i == 6) down[i].setOrigin(down[i].getLocalBounds().width / 2, (down[i].getLocalBounds().height / 2) + 4.0f);
-		else if (i == 3 || i == 7) down[i].setOrigin(down[i].getLocalBounds().width / 2, (down[i].getLocalBounds().height / 2) + 1.0f);
-		else down[i].setOrigin(down[i].getLocalBounds().width / 2, down[i].getLocalBounds().height / 2);
-		down[i].scale(3, 3);
+	else {
+		slot1 = item;
 	}
 	return;
 }
@@ -250,70 +241,120 @@ void Player::move() {
 		}
 		priorMove = 0;
 	}
-	state.setPosition(loc.first, loc.second);
-
+	
+	endAction();
 	return;
 }
 
 bool Player::attack() {
+	if (slot1 == NULL) {
+		return false;
+	}
+
 	if (facing == 0) {
-		rh->count++;	
-		if (rh->phase == rh->left.size()) {
-			rh->phase = 0;
+		slot1->count++;	
+		if (slot1->phase == slot1->left.size()) {
+			slot1->phase = 0;
 			return false;
 		}
-		state = rh->left[rh->phase];
+		state = slot1->left[slot1->phase];
 		
-		if (rh->count == rh->speed) {
-			rh->phase++;
-			rh->count = 0;
+		if (slot1->count == slot1->speed) {
+			slot1->phase++;
+			slot1->count = 0;
 		}
+		endAction();
 		return true;
 	}
 	else if (facing == 1) {
-		rh->count++;
-		if (rh->phase == rh->right.size()) {
-			rh->phase = 0;
+		slot1->count++;
+		if (slot1->phase == slot1->right.size()) {
+			slot1->phase = 0;
 			return false;
 		}
-		state = rh->right[rh->phase];
+		state = slot1->right[slot1->phase];
 
-		if (rh->count == rh->speed) {
-			rh->phase++;
-			rh->count = 0;
+		if (slot1->count == slot1->speed) {
+			slot1->phase++;
+			slot1->count = 0;
 		}
+		endAction();
 		return true;
 	}
 	else if (facing == 2) {
-		rh->count++;
-		if (rh->phase == rh->up.size()) {
-			rh->phase = 0;
+		slot1->count++;
+		if (slot1->phase == slot1->up.size()) {
+			slot1->phase = 0;
 			return false;
 		}
-		state = rh->up[rh->phase];
+		state = slot1->up[slot1->phase];
 
-		if (rh->count == rh->speed) {
-			rh->phase++;
-			rh->count = 0;
+		if (slot1->count == slot1->speed) {
+			slot1->phase++;
+			slot1->count = 0;
 		}
+		endAction();
 		return true;
 	}
 	else if (facing == 3) {
-		rh->count++;
-		if (rh->phase == rh->down.size()) {
-			rh->phase = 0;
+		slot1->count++;
+		if (slot1->phase == slot1->down.size()) {
+			slot1->phase = 0;
 			return false;
 		}
-		state = rh->down[rh->phase];
+		state = slot1->down[slot1->phase];
 
-		if (rh->count == rh->speed) {
-			rh->phase++;
-			rh->count = 0;
+		if (slot1->count == slot1->speed) {
+			slot1->phase++;
+			slot1->count = 0;
 		}
+		endAction();
 		return true;
 	}
-
 	return true;
+}
+
+void Player::bind() {
+
+	float midW;
+	
+	for (unsigned int i = 0; i < left.size(); i++) {
+		left[i].setTexture(*texture);
+		midW = left[i].getGlobalBounds().width / 2;
+		if (i == 1 || i == 5) left[i].setOrigin(left[i].getGlobalBounds().width / 2, (left[i].getGlobalBounds().height / 2) + 3.0f);
+		else if (i == 2 || i == 6) left[i].setOrigin(left[i].getGlobalBounds().width / 2, (left[i].getGlobalBounds().height / 2) + 2.0f);
+		else left[i].setOrigin(left[i].getGlobalBounds().width / 2, left[i].getGlobalBounds().height / 2);
+		left[i].scale(3, 3);
+	}
+	for (unsigned int i = 0; i < right.size(); i++) {
+		right[i].setTexture(*texture);
+		midW = right[i].getGlobalBounds().width / 2;
+		if (i == 1 || i == 5) right[i].setOrigin(right[i].getGlobalBounds().width / 2 , (right[i].getGlobalBounds().height / 2) + 3.0f);
+		else if (i == 2 || i == 6) right[i].setOrigin(right[i].getGlobalBounds().width / 2, (right[i].getGlobalBounds().height / 2) + 2.0f);
+		else right[i].setOrigin(right[i].getGlobalBounds().width / 2, right[i].getGlobalBounds().height / 2);
+		right[i].scale(3, 3);
+	}
+	for (unsigned int i = 0; i < up.size(); i++) {
+		up[i].setTexture(*texture);
+		if (i == 1 || i == 5) up[i].setOrigin(up[i].getGlobalBounds().width / 2, (up[i].getGlobalBounds().height / 2) + 2.0f);
+		else if (i == 3 || i == 7) up[i].setOrigin(up[i].getGlobalBounds().width / 2, (up[i].getGlobalBounds().height / 2) - 1.0f);
+		else up[i].setOrigin(up[i].getGlobalBounds().width / 2, up[i].getGlobalBounds().height / 2);
+		up[i].scale(3, 3);
+	}
+	for (unsigned int i = 0; i < down.size(); i++) {
+		down[i].setTexture(*texture);
+		if (i == 1 || i == 5) down[i].setOrigin(down[i].getGlobalBounds().width / 2, (down[i].getGlobalBounds().height / 2) + 3.0f);
+		else if (i == 2 || i == 6) down[i].setOrigin(down[i].getGlobalBounds().width / 2, (down[i].getGlobalBounds().height / 2) + 4.0f);
+		else if (i == 3 || i == 7) down[i].setOrigin(down[i].getGlobalBounds().width / 2, (down[i].getGlobalBounds().height / 2) + 1.0f);
+		else down[i].setOrigin(down[i].getGlobalBounds().width / 2, down[i].getGlobalBounds().height / 2);
+		down[i].scale(3, 3);
+	}
+	return;
+}
+
+void Player::endAction() {
+	state.setPosition(loc.first, loc.second);
+	return;
 }
 
 #endif

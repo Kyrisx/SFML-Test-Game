@@ -31,20 +31,6 @@ char* Character::getFacing() {
 }
 
 unsigned int Character::getStepPhase() { return stepPhase; }
-//unsigned int Character::getAtkDirSize() {
-//	if (facing == 1) return atkLeft.size();
-//	else if (facing == 2) return atkRight.size();
-//	else if (facing == 3) return atkUp.size();
-//	else return atkDown.size();
-//}
 
 float Character::x() { return loc.first; }
 float Character::y() { return loc.second; }
-
-void Character::addLeft(vector <Sprite>& vec) { left = vec; }
-void Character::addRight(vector <Sprite>& vec) {
-	right = vec; 
-	state = right[0];
-}
-void Character::addUp(vector <Sprite>& vec) { up = vec; }
-void Character::addDown(vector <Sprite>& vec) { down = vec; }

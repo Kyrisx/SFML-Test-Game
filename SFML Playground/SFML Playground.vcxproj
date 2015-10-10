@@ -96,12 +96,14 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Sword.h" />
     <ClInclude Include="Weapon.h" />
+    <ClInclude Include="Zelda.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="link.xcf" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="link.png" />
+    <Image Include="zelda.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -9,8 +9,6 @@
 using sf::Sprite;
 using sf::IntRect;
 
-
-
 class Sword : public Weapon
 {
 private:

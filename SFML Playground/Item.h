@@ -27,12 +27,6 @@ public:
 	vector <Sprite> down;
 
 	//virtual void use() = 0;
-
-//public:
-//	void loadHelper(Sprite &s, int left, int top, int width, int height) {
-//		s.setTextureRect(IntRect(left, top, width, height));
-//		return;
-//	}
 };
 	
 #endif

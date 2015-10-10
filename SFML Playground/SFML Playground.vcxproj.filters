@@ -41,6 +41,9 @@
     <ClInclude Include="NPC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Zelda.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="link.xcf">
@@ -49,6 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="link.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="zelda.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
